@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from "react";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./App.css";
+import Main from "./pages/Main";
 
-function App() {
+export const AppContext = createContext();
+
+const App = () => {
+  const [library, setLibrary] = useState([]);
+  const [bag, setBag] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={{ library, setLibrary, bag, setBag }}>
+      <Main></Main>
+    </AppContext.Provider>
   );
-}
+};
 
 export default App;
