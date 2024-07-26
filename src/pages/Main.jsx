@@ -7,11 +7,12 @@ import { Categories } from "./Categories";
 import { MyLibrary } from "./MyLibrary";
 import { Bag } from "./Bag";
 import { AppContext } from "../App";
+import allGames from "../data/gamesData";
 
 const Main = () => {
   const { library, bag } = useContext(AppContext);
   const [activeBar, setActiveBar] = useState(false);
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState(allGames);
 
   const homeRef = useRef();
   const categoriesRef = useRef();
@@ -51,23 +52,23 @@ const Main = () => {
     });
   };
 
-  const fetchGames = async () => {
-    try {
-      const res = await fetch("http://localhost:3000/api/gamesData.json");
-      const data = await res.json();
-      setGames(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchGames = async () => {
+  //   try {
+  //     const res = await fetch("http://localhost:3000/api/gamesData.json");
+  //     const data = await res.json();
+  //     setGames(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleToggleActive = () => {
     setActiveBar((status) => !status);
   };
 
-  useEffect(() => {
-    fetchGames();
-  }, []);
+  // useEffect(() => {
+  //   fetchGames();
+  // }, []);
 
   return (
     <main>
